@@ -1384,16 +1384,3 @@ function! PareditSplice()
         normal! X
     endif
 endfunction
-
-
-" =====================================================================
-"  Autocommands
-" =====================================================================
-
-au BufNewFile,BufRead *.lisp call PareditInitBuffer()
-au BufNewFile,BufRead *.cl   call PareditInitBuffer()
-au BufNewFile,BufRead *.clj  call PareditInitBuffer()
-au BufNewFile,BufRead *.cljs call PareditInitBuffer()
-au BufNewFile,BufRead *.scm  call PareditInitBuffer()
-au BufNewFile,BufRead *.rkt  call PareditInitBuffer()
-
