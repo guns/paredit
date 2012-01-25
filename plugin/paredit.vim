@@ -1385,6 +1385,16 @@ function! PareditSplice()
     endif
 endfunction
 
+" Replace the enclosing form with the current form
+function! PareditRaiseSexp()
+    if getline('.')[col('.')-1] !~# b:any_opening_char
+        call PareditFindOpening(0,0,0)
+    endif
+    normal d%
+    call PareditFindOpening(0,0,0)
+    normal v%p%
+endfunction
+
 " Visual select the next/prev element in the current form
 function! PareditSelectListElement(next)
     if !s:IsBalanced()
