@@ -1436,7 +1436,7 @@ function! PareditSelectListElement(next)
         if char =~# b:any_opening_char
             normal %
         endif
-        normal W
+        normal w
     endwhile
 
     " Search for next element by searching forwards;
@@ -1490,4 +1490,22 @@ function! PareditSelectListElement(next)
         call cursor(startline, startcol)
         return 0
     endif
+endfunction
+
+" Toggle Clojure (comment ...) style comments
+function! PareditToggleClojureComment()
+    let startpos = getpos('.')
+
+    if getline('.')[col('.')-1] !~# '('
+        call PareditFindOpening('(',')',0)
+    endif
+    call search('\v\S', 'W')
+
+    if expand('<cword>') ==# 'comment'
+        normal dw
+    else
+        execute 'normal icomment '
+    endif
+
+    return cursor(startpos[1:])
 endfunction
