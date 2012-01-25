@@ -1394,12 +1394,11 @@ function! PareditSelectListElement(next)
     let startcol  = col('.')
     let startchar = getline(startline)[startcol-1]
 
-    " Select the current form
-    normal v
-    if startchar =~ '\v(\(|\))'
-        normal a(
+    " Find the end of the enclosing form
+    if startchar =~ b:any_opening_char
+        call PareditFindClosing(0,0,0)
     endif
-    normal a(v
+    call PareditFindClosing(0,0,0)
 
     let endline = line('.')
     let endcol  = col('.')
