@@ -507,8 +507,8 @@ endfunction
 
 " Find opening matched character
 function! PareditFindOpening( open, close, select )
-    let open  = a:open  ? escape( a:open , '[]' ) : '\V(\|{\|['
-    let close = a:close ? escape( a:close, '[]' ) : '\V)\|}\|]'
+    let open  = a:open  ? escape( a:open , '[]' ) : b:any_opening_char
+    let close = a:close ? escape( a:close, '[]' ) : b:any_closing_char
     call searchpair( open, '', close, 'bW', s:skip_sc )
     if a:select
         call searchpair( open, '', close, 'W', s:skip_sc )
@@ -522,8 +522,8 @@ endfunction
 
 " Find closing matched character
 function! PareditFindClosing( open, close, select )
-    let open  = a:open  ? escape( a:open , '[]' ) : '\V(\|{\|['
-    let close = a:close ? escape( a:close, '[]' ) : '\V)\|}\|]'
+    let open  = a:open  ? escape( a:open , '[]' ) : b:any_opening_char
+    let close = a:close ? escape( a:close, '[]' ) : b:any_closing_char
     if a:select
         let line = getline( '.' )
         if line[col('.')-1] != a:open
