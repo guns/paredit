@@ -1385,6 +1385,7 @@ function! PareditSplice()
     endif
 endfunction
 
+" Visual select the next/prev element in the current form
 function! PareditSelectListElement(next)
     if !s:IsBalanced()
         return
