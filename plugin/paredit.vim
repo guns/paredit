@@ -1479,7 +1479,10 @@ function! PareditSelectListElement(next)
             execute 'normal va' . bra
         elseif nchar == '"'
             normal v
-            call search('\v[^\\]"', 'eW')
+            call search('\v[^\\]"', 'eW' . (a:next ? '' : 'b'))
+            if ! a:next
+                normal o
+            endif
         else
             normal viw
         endif
